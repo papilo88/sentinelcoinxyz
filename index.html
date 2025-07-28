@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="$SENTINEL: A meme-powered cryptocurrency on Avalanche. Join the phoenix warrior community!">
+    <title>$SENTINEL - Meme Coin on Avalanche</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --primary-color: #ffd700;
+            --secondary-color: #ff6a00;
+            --bg-color: #1e002a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 100px; /* Space for bottom tagline */
+            animation: colorShift 15s infinite;
+        }
+
+        /* Color changing animation */
+        @keyframes colorShift {
+            0% {
+                --primary-color: #ffd700;
+                --secondary-color: #ff6a00;
+                --bg-color: #1e002a;
+            }
+            20% {
+                --primary-color: #00ff88;
+                --secondary-color: #0099ff;
+                --bg-color: #001a2e;
+            }
+            40% {
+                --primary-color: #ff0080;
+                --secondary-color: #8000ff;
+                --bg-color: #2e001a;
+            }
+            60% {
+                --primary-color: #ff8000;
+                --secondary-color: #ff0040;
+                --bg-color: #2e1a00;
+            }
+            80% {
+                --primary-color: #40ff00;
+                --secondary-color: #00ffff;
+                --bg-color: #0a2e00;
+            }
+            100% {
+                --primary-color: #ffd700;
+                --secondary-color: #ff6a00;
+                --bg-color: #1e002a;
+            }
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* Dark overlay over video for better text readability */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%);
+            z-index: 0;
+            pointer-events: none;
+            animation: overlayColorShift 15s infinite;
+        }
+
+        @keyframes overlayColorShift {
+            0% { background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%); }
+            20% { background: linear-gradient(180deg, rgba(0, 26, 46, 0.6) 0%, rgba(0, 153, 255, 0.5) 100%); }
+            40% { background: linear-gradient(180deg, rgba(46, 0, 26, 0.6) 0%, rgba(128, 0, 255, 0.5) 100%); }
+            60% { background: linear-gradient(180deg, rgba(46, 26, 0, 0.6) 0%, rgba(255, 0, 64, 0.5) 100%); }
+            80% { background: linear-gradient(180deg, rgba(10, 46, 0, 0.6) 0%, rgba(0, 255, 255, 0.5) 100%); }
+            100% { background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%); }
+        }
+
+        .animated-bg-phoenix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .flying-phoenix {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0.12;
+            background-image: url('phoenix_head.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            will-change: transform;
+            filter: drop-shadow(0 0 20px var(--secondary-color));
+            animation: phoenixColorShift 15s infinite;
+        }
+
+        @keyframes phoenixColorShift {
+            0% { filter: drop-shadow(0 0 20px #ffb300); }
+            20% { filter: drop-shadow(0 0 20px #0099ff); }
+            40% { filter: drop-shadow(0 0 20px #8000ff); }
+            60% { filter: drop-shadow(0 0 20px #ff0040); }
+            80% { filter: drop-shadow(0 0 20px #00ffff); }
+            100% { filter: drop-shadow(0 0 20px #ffb300); }
+        }
+
+        @keyframes fly1 {
+            0% { left: -150px; top: 10vh; transform: scale(1) rotate(-10deg); }
+            50% { left: 50vw; top: 20vh; transform: scale(1.2) rotate(10deg); }
+            100% { left: 110vw; top: 15vh; transform: scale(1) rotate(-10deg); }
+        }
+
+        @keyframes fly2 {
+            0% { left: -150px; top: 60vh; transform: scale(0.8) rotate(0deg); }
+            50% { left: 60vw; top: 70vh; transform: scale(1) rotate(20deg); }
+            100% { left: 110vw; top: 65vh; transform: scale(0.8) rotate(0deg); }
+        }
+
+        @keyframes fly3 {
+            0% { left: -150px; top: 30vh; transform: scale(1.1) rotate(5deg); }
+            50% { left: 40vw; top: 40vh; transform: scale(1.3) rotate(-5deg); }
+            100% { left: 110vw; top: 35vh; transform: scale(1.1) rotate(5deg); }
+        }
+
+        .flying-phoenix:nth-child(1) { animation: fly1 32s linear infinite, phoenixColorShift 15s infinite; }
+        .flying-phoenix:nth-child(2) { animation: fly2 38s linear infinite 8s, phoenixColorShift 15s infinite 5s; }
+        .flying-phoenix:nth-child(3) { animation: fly3 29s linear infinite 4s, phoenixColorShift 15s infinite 10s; }
+
+        /* Connect Wallet - Top Right */
+        .connect-wallet-btn {
+            position: fixed;
+            top: 18px;
+            right: 24px;
+            z-index: 1003;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            color: var(--bg-color);
+            font-weight: 700;
+            border-radius: 25px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .wallet-address-display {
+            position: fixed;
+            top: 60px;
+            right: 24px;
+            z-index: 1003;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            background: rgba(30, 0, 42, 0.85);
+            padding: 4px 12px;
+            border-radius: 15px;
+            white-space: nowrap;
+            animation: textColorShift 15s infinite;
+        }
+
+        @keyframes textColorShift {
+            0% { color: #ffd700; background: rgba(30, 0, 42, 0.85); }
+            20% { color: #00ff88; background: rgba(0, 26, 46, 0.85); }
+            40% { color: #ff0080; background: rgba(46, 0, 26, 0.85); }
+            60% { color: #ff8000; background: rgba(46, 26, 0, 0.85); }
+            80% { color: #40ff00; background: rgba(10, 46, 0, 0.85); }
+            100% { color: #ffd700; background: rgba(30, 0, 42, 0.85); }
+        }
+
+        .navbar {
+            background: rgba(30, 0, 42, 0.95) !important;
+            box-shadow: 0 4px 15px 0 rgba(255, 106, 0, 0.53);
+            padding: 1rem 0;
+            z-index: 1002;
+            position: relative;
+            animation: navbarColorShift 15s infinite;
+        }
+
+        @keyframes navbarColorShift {
+            0% { 
+                background: rgba(30, 0, 42, 0.95) !important; 
+                box-shadow: 0 4px 15px 0 rgba(255, 106, 0, 0.53);
+            }
+            20% { 
+                background: rgba(0, 26, 46, 0.95) !important; 
+                box-shadow: 0 4px 15px 0 rgba(0, 153, 255, 0.53);
+            }
+            40% { 
+                background: rgba(46, 0, 26, 0.95) !important; 
+                box-shadow: 0 4px 15px 0 rgba(128, 0, 255, 0.53);
+            }
+            60% { 
+                background: rgba(46, 26, 0, 0.95) !important; 
+                box-shadow: 0 4px 15px 0 rgba(255, 0, 64, 0.53);
+            }
+            80% { 
+                background: rgba(10, 46, 0, 0.95) !important; 
+                box-shadow: 0 4px 15px 0 rgba(0, 255, 255, 0.53);
+            }
+            100% { 
+                background: rgba(30, 0, 42, 0.95) !important; 
+                box-shadow: 0 4px 15px 0 rgba(255, 106, 0, 0.53);
+            }
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 1.6rem;
+            animation: brandColorShift 15s infinite;
+        }
+
+        @keyframes brandColorShift {
+            0% { color: #ffd700 !important; }
+            20% { color: #00ff88 !important; }
+            40% { color: #ff0080 !important; }
+            60% { color: #ff8000 !important; }
+            80% { color: #40ff00 !important; }
+            100% { color: #ffd700 !important; }
+        }
+
+        .navbar-brand img {
+            height: 42px;
+            width: 42px;
+            object-fit: contain;
+            margin-right: 6px;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+            animation: logoColorShift 15s infinite;
+        }
+
+        @keyframes logoColorShift {
+            0% { filter: drop-shadow(0 0 10px #ffb30099); }
+            20% { filter: drop-shadow(0 0 10px #0099ff99); }
+            40% { filter: drop-shadow(0 0 10px #8000ff99); }
+            60% { filter: drop-shadow(0 0 10px #ff004099); }
+            80% { filter: drop-shadow(0 0 10px #00ffff99); }
+            100% { filter: drop-shadow(0 0 10px #ffb30099); }
+        }
+
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+            animation: navLinkColorShift 15s infinite;
+        }
+
+        @keyframes navLinkColorShift {
+            0% { color: #ffd700 !important; }
+            20% { color: #00ff88 !important; }
+            40% { color: #ff0080 !important; }
+            60% { color: #ff8000 !important; }
+            80% { color: #40ff00 !important; }
+            100% { color: #ffd700 !important; }
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+            background: transparent !important;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255,214,0,0.9)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .offcanvas {
+            background: rgba(30, 0, 42, 0.95);
+            z-index: 1050;
+            animation: offcanvasColorShift 15s infinite;
+        }
+
+        @keyframes offcanvasColorShift {
+            0% { background: rgba(30, 0, 42, 0.95); }
+            20% { background: rgba(0, 26, 46, 0.95); }
+            40% { background: rgba(46, 0, 26, 0.95); }
+            60% { background: rgba(46, 26, 0, 0.95); }
+            80% { background: rgba(10, 46, 0, 0.95); }
+            100% { background: rgba(30, 0, 42, 0.95); }
+        }
+
+        .offcanvas .nav-link {
+            color: var(--primary-color) !important;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, rgba(255, 106, 0, 0.3) 0%, rgba(30, 0, 42, 0.3) 100%);
+            background-image: url('phoenix_warrior_full.png');
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: contain;
+            padding: 120px 0 80px 0;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.27);
+            animation: heroColorShift 15s infinite;
+        }
+
+        @keyframes heroColorShift {
+            0% { 
+                background: linear-gradient(120deg, rgba(255, 106, 0, 0.3) 0%, rgba(30, 0, 42, 0.3) 100%);
+                border-bottom: 2px solid rgba(255, 215, 0, 0.27);
+            }
+            20% { 
+                background: linear-gradient(120deg, rgba(0, 153, 255, 0.3) 0%, rgba(0, 26, 46, 0.3) 100%);
+                border-bottom: 2px solid rgba(0, 255, 136, 0.27);
+            }
+            40% { 
+                background: linear-gradient(120deg, rgba(128, 0, 255, 0.3) 0%, rgba(46, 0, 26, 0.3) 100%);
+                border-bottom: 2px solid rgba(255, 0, 128, 0.27);
+            }
+            60% { 
+                background: linear-gradient(120deg, rgba(255, 0, 64, 0.3) 0%, rgba(46, 26, 0, 0.3) 100%);
+                border-bottom: 2px solid rgba(255, 128, 0, 0.27);
+            }
+            80% { 
+                background: linear-gradient(120deg, rgba(0, 255, 255, 0.3) 0%, rgba(10, 46, 0, 0.3) 100%);
+                border-bottom: 2px solid rgba(64, 255, 0, 0.27);
+            }
+            100% { 
+                background: linear-gradient(120deg, rgba(255, 106, 0, 0.3) 0%, rgba(30, 0, 42, 0.3) 100%);
+                border-bottom: 2px solid rgba(255, 215, 0, 0.27);
+            }
+        }
+
+        .section {
+            padding: 60px 0;
+            z-index: 2;
+            position: relative;
+            background: rgba(30, 0, 42, 0.4);
+            margin: 20px 0;
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            animation: sectionColorShift 15s infinite;
+        }
+
+        @keyframes sectionColorShift {
+            0% { background: rgba(30, 0, 42, 0.4); }
+            20% { background: rgba(0, 26, 46, 0.4); }
+            40% { background: rgba(46, 0, 26, 0.4); }
+            60% { background: rgba(46, 26, 0, 0.4); }
+            80% { background: rgba(10, 46, 0, 0.4); }
+            100% { background: rgba(30, 0, 42, 0.4); }
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            color: var(--bg-color);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2);
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: #fff;
+        }
+
+        .btn-outline-light {
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--primary-color) !important;
+            color: var(--bg-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .footer {
+            background: rgba(30, 0, 42, 0.95);
+            padding: 20px;
+            text-align: center;
+            color: var(--primary-color);
+            border-top: 2px solid rgba(255, 106, 0, 0.27);
+            z-index: 2;
+            position: relative;
+            animation: footerColorShift 15s infinite;
+        }
+
+        @keyframes footerColorShift {
+            0% { 
+                background: rgba(30, 0, 42, 0.95);
+                color: #ffd700;
+                border-top: 2px solid rgba(255, 106, 0, 0.27);
+            }
+            20% { 
+                background: rgba(0, 26, 46, 0.95);
+                color: #00ff88;
+                border-top: 2px solid rgba(0, 153, 255, 0.27);
+            }
+            40% { 
+                background: rgba(46, 0, 26, 0.95);
+                color: #ff0080;
+                border-top: 2px solid rgba(128, 0, 255, 0.27);
+            }
+            60% { 
+                background: rgba(46, 26, 0, 0.95);
+                color: #ff8000;
+                border-top: 2px solid rgba(255, 0, 64, 0.27);
+            }
+            80% { 
+                background: rgba(10, 46, 0, 0.95);
+                color: #40ff00;
+                border-top: 2px solid rgba(0, 255, 255, 0.27);
+            }
+            100% { 
+                background: rgba(30, 0, 42, 0.95);
+                color: #ffd700;
+                border-top: 2px solid rgba(255, 106, 0, 0.27);
+            }
+        }
+
+        .bottom-tagline {
+            width: 100vw;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1004;
+            background: rgba(30, 0, 42, 0.95);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            padding: 14px 0;
+            letter-spacing: 1px;
+            animation: taglineColorShift 15s infinite;
+        }
+
+        @keyframes taglineColorShift {
+            0% { 
+                background: rgba(30, 0, 42, 0.95);
+                color: #ffd700;
+            }
+            20% { 
+                background: rgba(0, 26, 46, 0.95);
+                color: #00ff88;
+            }
+            40% { 
+                background: rgba(46, 0, 26, 0.95);
+                color: #ff0080;
+            }
+            60% { 
+                background: rgba(46, 26, 0, 0.95);
+                color: #ff8000;
+            }
+            80% { 
+                background: rgba(10, 46, 0, 0.95);
+                color: #40ff00;
+            }
+            100% { 
+                background: rgba(30, 0, 42, 0.95);
+                color: #ffd700;
+            }
+        }
+
+        /* Ensure sections are properly visible */
+        .tokenomic-card {
+            background: rgba(30, 0, 42, 0.9);
+            border: 1px solid rgba(255, 106, 0, 0.27);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            animation: cardColorShift 15s infinite;
+        }
+
+        @keyframes cardColorShift {
+            0% { 
+                background: rgba(30, 0, 42, 0.9);
+                border: 1px solid rgba(255, 106, 0, 0.27);
+            }
+            20% { 
+                background: rgba(0, 26, 46, 0.9);
+                border: 1px solid rgba(0, 153, 255, 0.27);
+            }
+            40% { 
+                background: rgba(46, 0, 26, 0.9);
+                border: 1px solid rgba(128, 0, 255, 0.27);
+            }
+            60% { 
+                background: rgba(46, 26, 0, 0.9);
+                border: 1px solid rgba(255, 0, 64, 0.27);
+            }
+            80% { 
+                background: rgba(10, 46, 0, 0.9);
+                border: 1px solid rgba(0, 255, 255, 0.27);
+            }
+            100% { 
+                background: rgba(30, 0, 42, 0.9);
+                border: 1px solid rgba(255, 106, 0, 0.27);
+            }
+        }
+
+        .tokenomic-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(255, 106, 0, 0.4);
+        }
+
+        .tokenomic-card h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            animation: cardTitleColorShift 15s infinite;
+        }
+
+        @keyframes cardTitleColorShift {
+            0% { color: #ffd700; }
+            20% { color: #00ff88; }
+            40% { color: #ff0080; }
+            60% { color: #ff8000; }
+            80% { color: #40ff00; }
+            100% { color: #ffd700; }
+        }
+
+        .livechart-ratio {
+            min-height: 400px;
+            border: 2px solid rgba(255, 215, 0, 0.27);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(255, 106, 0, 0.2);
+            background: rgba(30, 0, 42, 0.8);
+            animation: chartColorShift 15s infinite;
+        }
+
+        @keyframes chartColorShift {
+            0% { 
+                border: 2px solid rgba(255, 215, 0, 0.27);
+                box-shadow: 0 2px 16px rgba(255, 106, 0, 0.2);
+                background: rgba(30, 0, 42, 0.8);
+            }
+            20% { 
+                border: 2px solid rgba(0, 255, 136, 0.27);
+                box-shadow: 0 2px 16px rgba(0, 153, 255, 0.2);
+                background: rgba(0, 26, 46, 0.8);
+            }
+            40% { 
+                border: 2px solid rgba(255, 0, 128, 0.27);
+                box-shadow: 0 2px 16px rgba(128, 0, 255, 0.2);
+                background: rgba(46, 0, 26, 0.8);
+            }
+            60% { 
+                border: 2px solid rgba(255, 128, 0, 0.27);
+                box-shadow: 0 2px 16px rgba(255, 0, 64, 0.2);
+                background: rgba(46, 26, 0, 0.8);
+            }
+            80% { 
+                border: 2px solid rgba(64, 255, 0, 0.27);
+                box-shadow: 0 2px 16px rgba(0, 255, 255, 0.2);
+                background: rgba(10, 46, 0, 0.8);
+            }
+            100% { 
+                border: 2px solid rgba(255, 215, 0, 0.27);
+                box-shadow: 0 2px 16px rgba(255, 106, 0, 0.2);
+                background: rgba(30, 0, 42, 0.8);
+            }
+        }
+
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 0 15px;
+            transition: transform 0.2s ease, color 0.2s ease;
+            text-decoration: none;
+            animation: socialColorShift 15s infinite;
+        }
+
+        @keyframes socialColorShift {
+            0% { color: #ffd700; }
+            20% { color: #00ff88; }
+            40% { color: #ff0080; }
+            60% { color: #ff8000; }
+            80% { color: #40ff00; }
+            100% { color: #ffd700; }
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        /* Arena logo styling */
+        .arena-logo {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 15px;
+            transition: all 0.2s ease;
+            opacity: 1;
+            /* Remove complex filters that might hide the logo */
+        }
+
+        .arena-logo:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .connect-wallet-btn {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .wallet-address-display {
+                top: 50px;
+                right: 10px;
+                font-size: 0.75rem;
+            }
+
+            .navbar-brand img {
+                height: 32px;
+                width: 32px;
+            }
+
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+
+            body {
+                padding-bottom: 80px;
+            }
+
+            .bottom-tagline {
+                font-size: 1rem;
+                padding: 10px 0;
+            }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3);
+            animation: headingColorShift 15s infinite;
+        }
+
+        @keyframes headingColorShift {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3); }
+            20% { text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 153, 255, 0.3); }
+            40% { text-shadow: 0 0 10px rgba(255, 0, 128, 0.5), 0 0 20px rgba(128, 0, 255, 0.3); }
+            60% { text-shadow: 0 0 10px rgba(255, 128, 0, 0.5), 0 0 20px rgba(255, 0, 64, 0.3); }
+            80% { text-shadow: 0 0 10px rgba(64, 255, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.3); }
+            100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+        <source src="phoenix_background.mp4" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Video Overlay for better text readability -->
+    <div class="video-overlay"></div>
+
+    <!-- Animated Phoenix Elements (keep as additional effects) -->
+    <div class="animated-bg-phoenix">
+        <div class="flying-phoenix"></div>
+        <div class="flying-phoenix"></div>
+        <div class="flying-phoenix"></div>
+    </div>
+
+    <!-- Connect Wallet button in top right -->
+    <button id="connect-wallet" class="connect-wallet-btn">Connect Wallet</button>
+    <div id="wallet-address" class="wallet-address-display" style="display:none;"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="phoenix_head.png" alt="Phoenix Logo" />
+                $SENTINEL
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title">$SENTINEL</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#tokenomics">Tokenomics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#whitelist">Whitelist</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#updates">Updates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#livechart">Live Chart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#cta">Join Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- Content hidden as requested -->
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2>About $SENTINEL</h2>
+            <p>$SENTINEL is a meme coin on Avalanche, inspired by the legendary phoenix warrior. Our mission is to build
+                a strong, fun, and rewarding community. We believe in the power of decentralization and the collective
+                strength of our phoenix army. Join us as we soar to new heights!</p>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="section" id="tokenomics">
+        <div class="container">
+            <h2 class="text-center mb-5">Tokenomics</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="tokenomic-card text-center">
+                        <h5>Total Supply</h5>
+                        <p><strong>10,000,000,000 $SENTINEL</strong></p>
+                        <p>A fixed supply ensures scarcity and value.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tokenomic-card text-center">
+                        <h5>Fair Launch</h5>
+                        <p><strong>No Presale, No Team Tokens</strong></p>
+                        <p>Everyone starts on equal footing.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tokenomic-card text-center">
+                        <h5>Liquidity Locked</h5>
+                        <p><strong>100% Secure</strong></p>
+                        <p>Ensuring long-term stability and trust.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="section text-center" id="community">
+        <!-- Content removed as requested -->
+    </section>
+
+    <!-- Whitelist Section -->
+    <section class="section text-center" id="whitelist">
+        <div class="container">
+            <h2>Whitelist</h2>
+            <p class="lead mb-4">
+                @TheArenaApp Ticket holders will be whitelisted to buy first on bonding
+            </p>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="section" id="roadmap">
+        <div class="container">
+            <h2>Roadmap</h2>
+            <ul>
+                <li>Phase 1: Launch & Community Building</li>
+                <li>Phase 2: Listings & Partnerships</li>
+                <li>Phase 3: Meme Competitions & Rewards</li>
+                <li>Phase 4: Ecosystem Expansion</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section class="section" id="updates">
+        <div class="container">
+            <h2 class="text-center mb-5">Phoenix Network Updates</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="tokenomic-card">
+                        <h5>Genesis Contract Deployed!</h5>
+                        <p class="text-muted">July 25, 2025</p>
+                        <p>$SENTINEL contract will be deployed at launch.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="tokenomic-card">
+                        <h5>Community Discord Open!</h5>
+                        <p class="text-muted">July 20, 2025</p>
+                        <p>Join our official Discord server for real-time discussions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="tokenomic-card">
+                        <h5>First Meme Contest Announced</h5>
+                        <p class="text-muted">Coming Soon</p>
+                        <p>Coming soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Chart Section -->
+    <section class="section" id="livechart">
+        <div class="container">
+            <h2>Live Arena Chart</h2>
+            <div class="ratio ratio-16x9 livechart-ratio">
+                <iframe src="https://arena.trade/tokens" title="Arena Live Chart" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section text-center" id="cta">
+        <div class="container">
+            <h2 class="mb-4">Ready to Join the Phoenix Army?</h2>
+            <p class="lead mb-5">
+                Become a part of the $SENTINEL community and rise with us on Avalanche!
+            </p>
+            <div class="d-grid gap-3 col-md-8 mx-auto">
+                <a href="#" class="btn btn-primary btn-lg">
+                    Buy $SENTINEL Now! <i class="fas fa-coins ms-2"></i>
+                </a>
+                
+                <!-- Social icons moved here below Buy button -->
+                <div class="mt-4">
+                    <h3>Join Our Phoenix Warriors!</h3>
+                    <p class="lead mb-4">
+                        Connect with us on our social channels and become part of the rising $SENTINEL community.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://t.me/sentinelcoinxyz" target="_blank" rel="noopener" title="Join us on Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://x.com/sentinelcoinxyz?s=21" target="_blank" rel="noopener" title="Follow us on X">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" title="Coming Soon">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://arena.trade" target="_blank" rel="noopener" title="Arena App">
+                            <img src="arena_logo.png" alt="Arena Logo" class="arena-logo" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 $SENTINEL. All rights reserved.
+    </footer>
+
+    <!-- Bottom tagline -->
+    <div class="bottom-tagline">
+        $SENTINEL - The meme powered phoenix warrior on Avalanche. Join the rise!
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Wallet Connection Logic
+        let currentAccount = null;
+
+        // Check if wallet is already connected on page load
+        window.addEventListener('load', async () => {
+            await checkWalletConnection();
+        });
+
+        // Main wallet connect function
+        async function connectWallet() {
+            try {
+                // Check if MetaMask is installed
+                if (typeof window.ethereum !== 'undefined') {
+                    await connectMetaMask();
+                }
+                // Check if Phantom (Solana) is installed
+                else if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
+                    await connectPhantom();
+                }
+                // Check if Coinbase Wallet is installed
+                else if (typeof window.coinbaseWalletExtension !== 'undefined') {
+                    await connectCoinbase();
+                }
+                // Check if Trust Wallet is installed
+                else if (typeof window.trustWallet !== 'undefined') {
+                    await connectTrustWallet();
+                }
+                // Check if WalletConnect is available
+                else if (typeof window.WalletConnect !== 'undefined') {
+                    await connectWalletConnect();
+                }
+                else {
+                    // Show modal with wallet options
+                    showWalletOptions();
+                }
+            } catch (error) {
+                console.error('Wallet connection error:', error);
+                showError('Failed to connect wallet. Please try again.');
+            }
+        }
+
+        // MetaMask connection
+        async function connectMetaMask() {
+            try {
+                const accounts = await window.ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+                
+                if (accounts.length > 0) {
+                    currentAccount = accounts[0];
+                    updateWalletDisplay('MetaMask', currentAccount);
+                    
+                    // Listen for account changes
+                    window.ethereum.on('accountsChanged', (accounts) => {
+                        if (accounts.length > 0) {
+                            currentAccount = accounts[0];
+                            updateWalletDisplay('MetaMask', currentAccount);
+                        } else {
+                            disconnectWallet();
+                        }
+                    });
+                }
+            } catch (error) {
+                throw new Error('MetaMask connection failed');
+            }
+        }
+
+        // Phantom Wallet connection (Solana)
+        async function connectPhantom() {
+            try {
+                const response = await window.solana.connect();
+                currentAccount = response.publicKey.toString();
+                updateWalletDisplay('Phantom', currentAccount);
+                
+                // Listen for disconnect
+                window.solana.on('disconnect', () => {
+                    disconnectWallet();
+                });
+            } catch (error) {
+                throw new Error('Phantom wallet connection failed');
+            }
+        }
+
+        // Coinbase Wallet connection
+        async function connectCoinbase() {
+            try {
+                const accounts = await window.coinbaseWalletExtension.request({
+                    method: 'eth_requestAccounts'
+                });
+                
+                if (accounts.length > 0) {
+                    currentAccount = accounts[0];
+                    updateWalletDisplay('Coinbase', currentAccount);
+                }
+            } catch (error) {
+                throw new Error('Coinbase wallet connection failed');
+            }
+        }
+
+        // Trust Wallet connection
+        async function connectTrustWallet() {
+            try {
+                const accounts = await window.trustWallet.request({
+                    method: 'eth_requestAccounts'
+                });
+                
+                if (accounts.length > 0) {
+                    currentAccount = accounts[0];
+                    updateWalletDisplay('Trust Wallet', currentAccount);
+                }
+            } catch (error) {
+                throw new Error('Trust Wallet connection failed');
+            }
+        }
+
+        // Check if wallet is already connected
+        async function checkWalletConnection() {
+            try {
+                if (typeof window.ethereum !== 'undefined') {
+                    const accounts = await window.ethereum.request({
+                        method: 'eth_accounts'
+                    });
+                    
+                    if (accounts.length > 0) {
+                        currentAccount = accounts[0];
+                        updateWalletDisplay('MetaMask', currentAccount);
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking wallet connection:', error);
+            }
+        }
+
+        // Update wallet display
+        function updateWalletDisplay(walletName, address) {
+            const connectBtn = document.getElementById('connect-wallet');
+            const walletDisplay = document.getElementById('wallet-address');
+            
+            // Shorten address for display
+            const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+            
+            // Update button text
+            connectBtn.textContent = 'Disconnect';
+            connectBtn.onclick = disconnectWallet;
+            
+            // Show wallet address
+            walletDisplay.textContent = `${walletName}: ${shortAddress}`;
+            walletDisplay.style.display = 'block';
+            
+            // Store connection info
+            localStorage.setItem('walletConnected', 'true');
+            localStorage.setItem('walletName', walletName);
+            localStorage.setItem('walletAddress', address);
+        }
+
+        // Disconnect wallet
+        function disconnectWallet() {
+            currentAccount = null;
+            
+            const connectBtn = document.getElementById('connect-wallet');
+            const walletDisplay = document.getElementById('wallet-address');
+            
+            // Reset button
+            connectBtn.textContent = 'Connect Wallet';
+            connectBtn.onclick = connectWallet;
+            
+            // Hide wallet display
+            walletDisplay.style.display = 'none';
+            
+            // Clear storage
+            localStorage.removeItem('walletConnected');
+            localStorage.removeItem('walletName');
+            localStorage.removeItem('walletAddress');
+            
+            // Disconnect from specific wallets
+            if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
+                window.solana.disconnect();
+            }
+        }
+
+        // Show wallet options modal
+        function showWalletOptions() {
+            const modalHtml = `
+                <div class="modal fade" id="walletModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="background: rgba(30, 0, 42, 0.95); border: 1px solid #ffd700;">
+                            <div class="modal-header" style="border-bottom: 1px solid #ffd700;">
+                                <h5 class="modal-title" style="color: #ffd700;">Connect Wallet</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="color: #fff; text-align: center; margin-bottom: 20px;">
+                                    Choose a wallet to connect to $SENTINEL
+                                </p>
+                                <div class="d-grid gap-3">
+                                    <button class="btn btn-outline-light" onclick="installMetaMask()">
+                                        <i class="fab fa-ethereum me-2"></i>Install MetaMask
+                                    </button>
+                                    <button class="btn btn-outline-light" onclick="installPhantom()">
+                                        <i class="fas fa-wallet me-2"></i>Install Phantom
+                                    </button>
+                                    <button class="btn btn-outline-light" onclick="installCoinbase()">
+                                        <i class="fas fa-coins me-2"></i>Install Coinbase Wallet
+                                    </button>
+                                    <button class="btn btn-outline-light" onclick="installTrustWallet()">
+                                        <i class="fas fa-shield-alt me-2"></i>Install Trust Wallet
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to body if it doesn't exist
+            if (!document.getElementById('walletModal')) {
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+            }
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('walletModal'));
+            modal.show();
+        }
+
+        // Install wallet functions
+        function installMetaMask() {
+            window.open('https://metamask.io/download/', '_blank');
+        }
+
+        function installPhantom() {
+            window.open('https://phantom.app/', '_blank');
+        }
+
+        function installCoinbase() {
+            window.open('https://www.coinbase.com/wallet', '_blank');
+        }
+
+        function installTrustWallet() {
+            window.open('https://trustwallet.com/', '_blank');
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorHtml = `
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: rgba(220, 53, 69, 0.9); border: 1px solid #dc3545;">
+                    <strong>Error:</strong> ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', errorHtml);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                const alert = document.querySelector('.alert');
+                if (alert) {
+                    alert.remove();
+                }
+            }, 5000);
+        }
+
+        // Add event listener to connect button
+        document.getElementById('connect-wallet').addEventListener('click', connectWallet);
+
+        // Check for stored wallet connection on page load
+        window.addEventListener('load', () => {
+            const isConnected = localStorage.getItem('walletConnected');
+            const walletName = localStorage.getItem('walletName');
+            const walletAddress = localStorage.getItem('walletAddress');
+            
+            if (isConnected && walletName && walletAddress) {
+                updateWalletDisplay(walletName, walletAddress);
+            }
+        });
+    </script>
+</body>
+
+</html>
