@@ -25,7 +25,7 @@
             padding: 0;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 100px; /* Space for bottom tagline */
+            padding-bottom: 120px;
             animation: colorShift 15s infinite;
         }
 
@@ -36,26 +36,31 @@
                 --secondary-color: #ff6a00;
                 --bg-color: #1e002a;
             }
+
             20% {
                 --primary-color: #00ff88;
                 --secondary-color: #0099ff;
                 --bg-color: #001a2e;
             }
+
             40% {
                 --primary-color: #ff0080;
                 --secondary-color: #8000ff;
                 --bg-color: #2e001a;
             }
+
             60% {
                 --primary-color: #ff8000;
                 --secondary-color: #ff0040;
                 --bg-color: #2e1a00;
             }
+
             80% {
                 --primary-color: #40ff00;
                 --secondary-color: #00ffff;
                 --bg-color: #0a2e00;
             }
+
             100% {
                 --primary-color: #ffd700;
                 --secondary-color: #ff6a00;
@@ -63,7 +68,7 @@
             }
         }
 
-        /* Video Background */
+        /* Video Background - Fixed for mobile */
         .video-background {
             position: fixed;
             top: 0;
@@ -75,7 +80,46 @@
             pointer-events: none;
         }
 
-        /* Dark overlay over video for better text readability */
+        /* Mobile video fallback */
+        @media (max-width: 768px) {
+            .video-background {
+                display: none;
+            }
+
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: -1;
+                background: linear-gradient(45deg,
+                        #1e002a 0%,
+                        #2a0040 25%,
+                        #ff6a0020 50%,
+                        #1e002a 75%,
+                        #0a001a 100%);
+                background-size: 400% 400%;
+                animation: mobileGradient 20s ease infinite;
+            }
+        }
+
+        @keyframes mobileGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Video overlay */
         .video-overlay {
             position: fixed;
             top: 0;
@@ -89,12 +133,29 @@
         }
 
         @keyframes overlayColorShift {
-            0% { background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%); }
-            20% { background: linear-gradient(180deg, rgba(0, 26, 46, 0.6) 0%, rgba(0, 153, 255, 0.5) 100%); }
-            40% { background: linear-gradient(180deg, rgba(46, 0, 26, 0.6) 0%, rgba(128, 0, 255, 0.5) 100%); }
-            60% { background: linear-gradient(180deg, rgba(46, 26, 0, 0.6) 0%, rgba(255, 0, 64, 0.5) 100%); }
-            80% { background: linear-gradient(180deg, rgba(10, 46, 0, 0.6) 0%, rgba(0, 255, 255, 0.5) 100%); }
-            100% { background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%); }
+            0% {
+                background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%);
+            }
+
+            20% {
+                background: linear-gradient(180deg, rgba(0, 26, 46, 0.6) 0%, rgba(0, 153, 255, 0.5) 100%);
+            }
+
+            40% {
+                background: linear-gradient(180deg, rgba(46, 0, 26, 0.6) 0%, rgba(128, 0, 255, 0.5) 100%);
+            }
+
+            60% {
+                background: linear-gradient(180deg, rgba(46, 26, 0, 0.6) 0%, rgba(255, 0, 64, 0.5) 100%);
+            }
+
+            80% {
+                background: linear-gradient(180deg, rgba(10, 46, 0, 0.6) 0%, rgba(0, 255, 255, 0.5) 100%);
+            }
+
+            100% {
+                background: linear-gradient(180deg, rgba(30, 0, 42, 0.6) 0%, rgba(255, 106, 0, 0.5) 100%);
+            }
         }
 
         .animated-bg-phoenix {
@@ -121,108 +182,215 @@
             animation: phoenixColorShift 15s infinite;
         }
 
+        @media (max-width: 768px) {
+            .flying-phoenix {
+                width: 80px;
+                height: 80px;
+                opacity: 0.08;
+            }
+        }
+
         @keyframes phoenixColorShift {
-            0% { filter: drop-shadow(0 0 20px #ffb300); }
-            20% { filter: drop-shadow(0 0 20px #0099ff); }
-            40% { filter: drop-shadow(0 0 20px #8000ff); }
-            60% { filter: drop-shadow(0 0 20px #ff0040); }
-            80% { filter: drop-shadow(0 0 20px #00ffff); }
-            100% { filter: drop-shadow(0 0 20px #ffb300); }
+            0% {
+                filter: drop-shadow(0 0 20px #ffb300);
+            }
+
+            20% {
+                filter: drop-shadow(0 0 20px #0099ff);
+            }
+
+            40% {
+                filter: drop-shadow(0 0 20px #8000ff);
+            }
+
+            60% {
+                filter: drop-shadow(0 0 20px #ff0040);
+            }
+
+            80% {
+                filter: drop-shadow(0 0 20px #00ffff);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 20px #ffb300);
+            }
         }
 
         @keyframes fly1 {
-            0% { left: -150px; top: 10vh; transform: scale(1) rotate(-10deg); }
-            50% { left: 50vw; top: 20vh; transform: scale(1.2) rotate(10deg); }
-            100% { left: 110vw; top: 15vh; transform: scale(1) rotate(-10deg); }
+            0% {
+                left: -150px;
+                top: 10vh;
+                transform: scale(1) rotate(-10deg);
+            }
+
+            50% {
+                left: 50vw;
+                top: 20vh;
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                left: 110vw;
+                top: 15vh;
+                transform: scale(1) rotate(-10deg);
+            }
         }
 
         @keyframes fly2 {
-            0% { left: -150px; top: 60vh; transform: scale(0.8) rotate(0deg); }
-            50% { left: 60vw; top: 70vh; transform: scale(1) rotate(20deg); }
-            100% { left: 110vw; top: 65vh; transform: scale(0.8) rotate(0deg); }
+            0% {
+                left: -150px;
+                top: 60vh;
+                transform: scale(0.8) rotate(0deg);
+            }
+
+            50% {
+                left: 60vw;
+                top: 70vh;
+                transform: scale(1) rotate(20deg);
+            }
+
+            100% {
+                left: 110vw;
+                top: 65vh;
+                transform: scale(0.8) rotate(0deg);
+            }
         }
 
         @keyframes fly3 {
-            0% { left: -150px; top: 30vh; transform: scale(1.1) rotate(5deg); }
-            50% { left: 40vw; top: 40vh; transform: scale(1.3) rotate(-5deg); }
-            100% { left: 110vw; top: 35vh; transform: scale(1.1) rotate(5deg); }
+            0% {
+                left: -150px;
+                top: 30vh;
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            50% {
+                left: 40vw;
+                top: 40vh;
+                transform: scale(1.3) rotate(-5deg);
+            }
+
+            100% {
+                left: 110vw;
+                top: 35vh;
+                transform: scale(1.1) rotate(5deg);
+            }
         }
 
-        .flying-phoenix:nth-child(1) { animation: fly1 32s linear infinite, phoenixColorShift 15s infinite; }
-        .flying-phoenix:nth-child(2) { animation: fly2 38s linear infinite 8s, phoenixColorShift 15s infinite 5s; }
-        .flying-phoenix:nth-child(3) { animation: fly3 29s linear infinite 4s, phoenixColorShift 15s infinite 10s; }
+        .flying-phoenix:nth-child(1) {
+            animation: fly1 32s linear infinite, phoenixColorShift 15s infinite;
+        }
 
-        /* Connect Wallet - Top Right */
+        .flying-phoenix:nth-child(2) {
+            animation: fly2 38s linear infinite 8s, phoenixColorShift 15s infinite 5s;
+        }
+
+        .flying-phoenix:nth-child(3) {
+            animation: fly3 29s linear infinite 4s, phoenixColorShift 15s infinite 10s;
+        }
+
+        /* Connect Wallet Button */
         .connect-wallet-btn {
             position: fixed;
-            top: 18px;
-            right: 24px;
-            z-index: 1003;
+            top: 20px;
+            right: 20px;
+            z-index: 1010;
             background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             border: none;
             color: var(--bg-color);
             font-weight: 700;
             border-radius: 25px;
-            padding: 8px 16px;
+            padding: 10px 18px;
             font-size: 0.9rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
         }
 
         .wallet-address-display {
             position: fixed;
-            top: 60px;
-            right: 24px;
-            z-index: 1003;
+            top: 70px;
+            right: 20px;
+            z-index: 1010;
             color: var(--primary-color);
             font-size: 0.85rem;
-            background: rgba(30, 0, 42, 0.85);
-            padding: 4px 12px;
+            background: rgba(30, 0, 42, 0.9);
+            padding: 6px 12px;
             border-radius: 15px;
             white-space: nowrap;
             animation: textColorShift 15s infinite;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            max-width: 200px;
         }
 
         @keyframes textColorShift {
-            0% { color: #ffd700; background: rgba(30, 0, 42, 0.85); }
-            20% { color: #00ff88; background: rgba(0, 26, 46, 0.85); }
-            40% { color: #ff0080; background: rgba(46, 0, 26, 0.85); }
-            60% { color: #ff8000; background: rgba(46, 26, 0, 0.85); }
-            80% { color: #40ff00; background: rgba(10, 46, 0, 0.85); }
-            100% { color: #ffd700; background: rgba(30, 0, 42, 0.85); }
+            0% {
+                color: #ffd700;
+                background: rgba(30, 0, 42, 0.9);
+            }
+
+            20% {
+                color: #00ff88;
+                background: rgba(0, 26, 46, 0.9);
+            }
+
+            40% {
+                color: #ff0080;
+                background: rgba(46, 0, 26, 0.9);
+            }
+
+            60% {
+                color: #ff8000;
+                background: rgba(46, 26, 0, 0.9);
+            }
+
+            80% {
+                color: #40ff00;
+                background: rgba(10, 46, 0, 0.9);
+            }
+
+            100% {
+                color: #ffd700;
+                background: rgba(30, 0, 42, 0.9);
+            }
         }
 
         .navbar {
             background: rgba(30, 0, 42, 0.95) !important;
             box-shadow: 0 4px 15px 0 rgba(255, 106, 0, 0.53);
             padding: 1rem 0;
-            z-index: 1002;
+            z-index: 1005;
             position: relative;
             animation: navbarColorShift 15s infinite;
         }
 
         @keyframes navbarColorShift {
-            0% { 
-                background: rgba(30, 0, 42, 0.95) !important; 
+            0% {
+                background: rgba(30, 0, 42, 0.95) !important;
                 box-shadow: 0 4px 15px 0 rgba(255, 106, 0, 0.53);
             }
-            20% { 
-                background: rgba(0, 26, 46, 0.95) !important; 
+
+            20% {
+                background: rgba(0, 26, 46, 0.95) !important;
                 box-shadow: 0 4px 15px 0 rgba(0, 153, 255, 0.53);
             }
-            40% { 
-                background: rgba(46, 0, 26, 0.95) !important; 
+
+            40% {
+                background: rgba(46, 0, 26, 0.95) !important;
                 box-shadow: 0 4px 15px 0 rgba(128, 0, 255, 0.53);
             }
-            60% { 
-                background: rgba(46, 26, 0, 0.95) !important; 
+
+            60% {
+                background: rgba(46, 26, 0, 0.95) !important;
                 box-shadow: 0 4px 15px 0 rgba(255, 0, 64, 0.53);
             }
-            80% { 
-                background: rgba(10, 46, 0, 0.95) !important; 
+
+            80% {
+                background: rgba(10, 46, 0, 0.95) !important;
                 box-shadow: 0 4px 15px 0 rgba(0, 255, 255, 0.53);
             }
-            100% { 
-                background: rgba(30, 0, 42, 0.95) !important; 
+
+            100% {
+                background: rgba(30, 0, 42, 0.95) !important;
                 box-shadow: 0 4px 15px 0 rgba(255, 106, 0, 0.53);
             }
         }
@@ -240,12 +408,29 @@
         }
 
         @keyframes brandColorShift {
-            0% { color: #ffd700 !important; }
-            20% { color: #00ff88 !important; }
-            40% { color: #ff0080 !important; }
-            60% { color: #ff8000 !important; }
-            80% { color: #40ff00 !important; }
-            100% { color: #ffd700 !important; }
+            0% {
+                color: #ffd700 !important;
+            }
+
+            20% {
+                color: #00ff88 !important;
+            }
+
+            40% {
+                color: #ff0080 !important;
+            }
+
+            60% {
+                color: #ff8000 !important;
+            }
+
+            80% {
+                color: #40ff00 !important;
+            }
+
+            100% {
+                color: #ffd700 !important;
+            }
         }
 
         .navbar-brand img {
@@ -258,12 +443,29 @@
         }
 
         @keyframes logoColorShift {
-            0% { filter: drop-shadow(0 0 10px #ffb30099); }
-            20% { filter: drop-shadow(0 0 10px #0099ff99); }
-            40% { filter: drop-shadow(0 0 10px #8000ff99); }
-            60% { filter: drop-shadow(0 0 10px #ff004099); }
-            80% { filter: drop-shadow(0 0 10px #00ffff99); }
-            100% { filter: drop-shadow(0 0 10px #ffb30099); }
+            0% {
+                filter: drop-shadow(0 0 10px #ffb30099);
+            }
+
+            20% {
+                filter: drop-shadow(0 0 10px #0099ff99);
+            }
+
+            40% {
+                filter: drop-shadow(0 0 10px #8000ff99);
+            }
+
+            60% {
+                filter: drop-shadow(0 0 10px #ff004099);
+            }
+
+            80% {
+                filter: drop-shadow(0 0 10px #00ffff99);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 10px #ffb30099);
+            }
         }
 
         .nav-link {
@@ -276,12 +478,29 @@
         }
 
         @keyframes navLinkColorShift {
-            0% { color: #ffd700 !important; }
-            20% { color: #00ff88 !important; }
-            40% { color: #ff0080 !important; }
-            60% { color: #ff8000 !important; }
-            80% { color: #40ff00 !important; }
-            100% { color: #ffd700 !important; }
+            0% {
+                color: #ffd700 !important;
+            }
+
+            20% {
+                color: #00ff88 !important;
+            }
+
+            40% {
+                color: #ff0080 !important;
+            }
+
+            60% {
+                color: #ff8000 !important;
+            }
+
+            80% {
+                color: #40ff00 !important;
+            }
+
+            100% {
+                color: #ffd700 !important;
+            }
         }
 
         .nav-link:hover {
@@ -308,12 +527,29 @@
         }
 
         @keyframes offcanvasColorShift {
-            0% { background: rgba(30, 0, 42, 0.95); }
-            20% { background: rgba(0, 26, 46, 0.95); }
-            40% { background: rgba(46, 0, 26, 0.95); }
-            60% { background: rgba(46, 26, 0, 0.95); }
-            80% { background: rgba(10, 46, 0, 0.95); }
-            100% { background: rgba(30, 0, 42, 0.95); }
+            0% {
+                background: rgba(30, 0, 42, 0.95);
+            }
+
+            20% {
+                background: rgba(0, 26, 46, 0.95);
+            }
+
+            40% {
+                background: rgba(46, 0, 26, 0.95);
+            }
+
+            60% {
+                background: rgba(46, 26, 0, 0.95);
+            }
+
+            80% {
+                background: rgba(10, 46, 0, 0.95);
+            }
+
+            100% {
+                background: rgba(30, 0, 42, 0.95);
+            }
         }
 
         .offcanvas .nav-link {
@@ -337,27 +573,32 @@
         }
 
         @keyframes heroColorShift {
-            0% { 
+            0% {
                 background: linear-gradient(120deg, rgba(255, 106, 0, 0.3) 0%, rgba(30, 0, 42, 0.3) 100%);
                 border-bottom: 2px solid rgba(255, 215, 0, 0.27);
             }
-            20% { 
+
+            20% {
                 background: linear-gradient(120deg, rgba(0, 153, 255, 0.3) 0%, rgba(0, 26, 46, 0.3) 100%);
                 border-bottom: 2px solid rgba(0, 255, 136, 0.27);
             }
-            40% { 
+
+            40% {
                 background: linear-gradient(120deg, rgba(128, 0, 255, 0.3) 0%, rgba(46, 0, 26, 0.3) 100%);
                 border-bottom: 2px solid rgba(255, 0, 128, 0.27);
             }
-            60% { 
+
+            60% {
                 background: linear-gradient(120deg, rgba(255, 0, 64, 0.3) 0%, rgba(46, 26, 0, 0.3) 100%);
                 border-bottom: 2px solid rgba(255, 128, 0, 0.27);
             }
-            80% { 
+
+            80% {
                 background: linear-gradient(120deg, rgba(0, 255, 255, 0.3) 0%, rgba(10, 46, 0, 0.3) 100%);
                 border-bottom: 2px solid rgba(64, 255, 0, 0.27);
             }
-            100% { 
+
+            100% {
                 background: linear-gradient(120deg, rgba(255, 106, 0, 0.3) 0%, rgba(30, 0, 42, 0.3) 100%);
                 border-bottom: 2px solid rgba(255, 215, 0, 0.27);
             }
@@ -375,12 +616,29 @@
         }
 
         @keyframes sectionColorShift {
-            0% { background: rgba(30, 0, 42, 0.4); }
-            20% { background: rgba(0, 26, 46, 0.4); }
-            40% { background: rgba(46, 0, 26, 0.4); }
-            60% { background: rgba(46, 26, 0, 0.4); }
-            80% { background: rgba(10, 46, 0, 0.4); }
-            100% { background: rgba(30, 0, 42, 0.4); }
+            0% {
+                background: rgba(30, 0, 42, 0.4);
+            }
+
+            20% {
+                background: rgba(0, 26, 46, 0.4);
+            }
+
+            40% {
+                background: rgba(46, 0, 26, 0.4);
+            }
+
+            60% {
+                background: rgba(46, 26, 0, 0.4);
+            }
+
+            80% {
+                background: rgba(10, 46, 0, 0.4);
+            }
+
+            100% {
+                background: rgba(30, 0, 42, 0.4);
+            }
         }
 
         .btn-primary {
@@ -421,32 +679,37 @@
         }
 
         @keyframes footerColorShift {
-            0% { 
+            0% {
                 background: rgba(30, 0, 42, 0.95);
                 color: #ffd700;
                 border-top: 2px solid rgba(255, 106, 0, 0.27);
             }
-            20% { 
+
+            20% {
                 background: rgba(0, 26, 46, 0.95);
                 color: #00ff88;
                 border-top: 2px solid rgba(0, 153, 255, 0.27);
             }
-            40% { 
+
+            40% {
                 background: rgba(46, 0, 26, 0.95);
                 color: #ff0080;
                 border-top: 2px solid rgba(128, 0, 255, 0.27);
             }
-            60% { 
+
+            60% {
                 background: rgba(46, 26, 0, 0.95);
                 color: #ff8000;
                 border-top: 2px solid rgba(255, 0, 64, 0.27);
             }
-            80% { 
+
+            80% {
                 background: rgba(10, 46, 0, 0.95);
                 color: #40ff00;
                 border-top: 2px solid rgba(0, 255, 255, 0.27);
             }
-            100% { 
+
+            100% {
                 background: rgba(30, 0, 42, 0.95);
                 color: #ffd700;
                 border-top: 2px solid rgba(255, 106, 0, 0.27);
@@ -469,33 +732,37 @@
         }
 
         @keyframes taglineColorShift {
-            0% { 
+            0% {
                 background: rgba(30, 0, 42, 0.95);
                 color: #ffd700;
             }
-            20% { 
+
+            20% {
                 background: rgba(0, 26, 46, 0.95);
                 color: #00ff88;
             }
-            40% { 
+
+            40% {
                 background: rgba(46, 0, 26, 0.95);
                 color: #ff0080;
             }
-            60% { 
+
+            60% {
                 background: rgba(46, 26, 0, 0.95);
                 color: #ff8000;
             }
-            80% { 
+
+            80% {
                 background: rgba(10, 46, 0, 0.95);
                 color: #40ff00;
             }
-            100% { 
+
+            100% {
                 background: rgba(30, 0, 42, 0.95);
                 color: #ffd700;
             }
         }
 
-        /* Ensure sections are properly visible */
         .tokenomic-card {
             background: rgba(30, 0, 42, 0.9);
             border: 1px solid rgba(255, 106, 0, 0.27);
@@ -511,27 +778,32 @@
         }
 
         @keyframes cardColorShift {
-            0% { 
+            0% {
                 background: rgba(30, 0, 42, 0.9);
                 border: 1px solid rgba(255, 106, 0, 0.27);
             }
-            20% { 
+
+            20% {
                 background: rgba(0, 26, 46, 0.9);
                 border: 1px solid rgba(0, 153, 255, 0.27);
             }
-            40% { 
+
+            40% {
                 background: rgba(46, 0, 26, 0.9);
                 border: 1px solid rgba(128, 0, 255, 0.27);
             }
-            60% { 
+
+            60% {
                 background: rgba(46, 26, 0, 0.9);
                 border: 1px solid rgba(255, 0, 64, 0.27);
             }
-            80% { 
+
+            80% {
                 background: rgba(10, 46, 0, 0.9);
                 border: 1px solid rgba(0, 255, 255, 0.27);
             }
-            100% { 
+
+            100% {
                 background: rgba(30, 0, 42, 0.9);
                 border: 1px solid rgba(255, 106, 0, 0.27);
             }
@@ -550,12 +822,29 @@
         }
 
         @keyframes cardTitleColorShift {
-            0% { color: #ffd700; }
-            20% { color: #00ff88; }
-            40% { color: #ff0080; }
-            60% { color: #ff8000; }
-            80% { color: #40ff00; }
-            100% { color: #ffd700; }
+            0% {
+                color: #ffd700;
+            }
+
+            20% {
+                color: #00ff88;
+            }
+
+            40% {
+                color: #ff0080;
+            }
+
+            60% {
+                color: #ff8000;
+            }
+
+            80% {
+                color: #40ff00;
+            }
+
+            100% {
+                color: #ffd700;
+            }
         }
 
         .livechart-ratio {
@@ -569,32 +858,37 @@
         }
 
         @keyframes chartColorShift {
-            0% { 
+            0% {
                 border: 2px solid rgba(255, 215, 0, 0.27);
                 box-shadow: 0 2px 16px rgba(255, 106, 0, 0.2);
                 background: rgba(30, 0, 42, 0.8);
             }
-            20% { 
+
+            20% {
                 border: 2px solid rgba(0, 255, 136, 0.27);
                 box-shadow: 0 2px 16px rgba(0, 153, 255, 0.2);
                 background: rgba(0, 26, 46, 0.8);
             }
-            40% { 
+
+            40% {
                 border: 2px solid rgba(255, 0, 128, 0.27);
                 box-shadow: 0 2px 16px rgba(128, 0, 255, 0.2);
                 background: rgba(46, 0, 26, 0.8);
             }
-            60% { 
+
+            60% {
                 border: 2px solid rgba(255, 128, 0, 0.27);
                 box-shadow: 0 2px 16px rgba(255, 0, 64, 0.2);
                 background: rgba(46, 26, 0, 0.8);
             }
-            80% { 
+
+            80% {
                 border: 2px solid rgba(64, 255, 0, 0.27);
                 box-shadow: 0 2px 16px rgba(0, 255, 255, 0.2);
                 background: rgba(10, 46, 0, 0.8);
             }
-            100% { 
+
+            100% {
                 border: 2px solid rgba(255, 215, 0, 0.27);
                 box-shadow: 0 2px 16px rgba(255, 106, 0, 0.2);
                 background: rgba(30, 0, 42, 0.8);
@@ -611,12 +905,29 @@
         }
 
         @keyframes socialColorShift {
-            0% { color: #ffd700; }
-            20% { color: #00ff88; }
-            40% { color: #ff0080; }
-            60% { color: #ff8000; }
-            80% { color: #40ff00; }
-            100% { color: #ffd700; }
+            0% {
+                color: #ffd700;
+            }
+
+            20% {
+                color: #00ff88;
+            }
+
+            40% {
+                color: #ff0080;
+            }
+
+            60% {
+                color: #ff8000;
+            }
+
+            80% {
+                color: #40ff00;
+            }
+
+            100% {
+                color: #ffd700;
+            }
         }
 
         .social-icons a:hover {
@@ -624,14 +935,12 @@
             transform: scale(1.1);
         }
 
-        /* Arena logo styling */
         .arena-logo {
             width: 2.5rem;
             height: 2.5rem;
             margin: 0 15px;
             transition: all 0.2s ease;
             opacity: 1;
-            /* Remove complex filters that might hide the logo */
         }
 
         .arena-logo:hover {
@@ -639,19 +948,22 @@
             opacity: 0.8;
         }
 
-        /* Responsive adjustments */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .connect-wallet-btn {
                 top: 10px;
                 right: 10px;
                 font-size: 0.8rem;
-                padding: 6px 12px;
+                padding: 8px 14px;
+                z-index: 1010;
             }
 
             .wallet-address-display {
-                top: 50px;
+                top: 55px;
                 right: 10px;
                 font-size: 0.75rem;
+                max-width: 180px;
+                padding: 4px 8px;
             }
 
             .navbar-brand img {
@@ -660,54 +972,145 @@
             }
 
             .navbar-brand {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             body {
-                padding-bottom: 80px;
+                padding-bottom: 100px;
             }
 
             .bottom-tagline {
                 font-size: 1rem;
-                padding: 10px 0;
+                padding: 12px 5px;
+                line-height: 1.2;
+            }
+
+            .section {
+                padding: 40px 0;
+                margin: 10px 0;
+            }
+
+            .hero {
+                padding: 100px 0 60px 0;
+            }
+
+            .social-icons a {
+                font-size: 2rem;
+                margin: 0 10px;
+            }
+
+            .arena-logo {
+                width: 2rem;
+                height: 2rem;
+                margin: 0 10px;
+            }
+
+            .tokenomic-card {
+                padding: 15px;
+                margin: 5px 0;
+            }
+
+            .livechart-ratio {
+                min-height: 300px;
+            }
+
+            .modal {
+                z-index: 1060;
+            }
+
+            .flying-phoenix {
+                animation-duration: 40s;
             }
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        @media (max-width: 480px) {
+            .connect-wallet-btn {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+            }
+
+            .wallet-address-display {
+                font-size: 0.7rem;
+                max-width: 150px;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .social-icons a {
+                font-size: 1.8rem;
+                margin: 0 8px;
+            }
+
+            .arena-logo {
+                width: 1.8rem;
+                height: 1.8rem;
+                margin: 0 8px;
+            }
+
+            .bottom-tagline {
+                font-size: 0.9rem;
+                padding: 10px 5px;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3);
             animation: headingColorShift 15s infinite;
         }
 
         @keyframes headingColorShift {
-            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3); }
-            20% { text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 153, 255, 0.3); }
-            40% { text-shadow: 0 0 10px rgba(255, 0, 128, 0.5), 0 0 20px rgba(128, 0, 255, 0.3); }
-            60% { text-shadow: 0 0 10px rgba(255, 128, 0, 0.5), 0 0 20px rgba(255, 0, 64, 0.3); }
-            80% { text-shadow: 0 0 10px rgba(64, 255, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.3); }
-            100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3); }
+            0% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3);
+            }
+
+            20% {
+                text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 153, 255, 0.3);
+            }
+
+            40% {
+                text-shadow: 0 0 10px rgba(255, 0, 128, 0.5), 0 0 20px rgba(128, 0, 255, 0.3);
+            }
+
+            60% {
+                text-shadow: 0 0 10px rgba(255, 128, 0, 0.5), 0 0 20px rgba(255, 0, 64, 0.3);
+            }
+
+            80% {
+                text-shadow: 0 0 10px rgba(64, 255, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+            }
+
+            100% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.3);
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Video Background -->
-    <video class="video-background" autoplay muted loop>
+    <video class="video-background" autoplay muted loop playsinline>
         <source src="phoenix_background.mp4" type="video/mp4">
-        <!-- Fallback for browsers that don't support video -->
         Your browser does not support the video tag.
     </video>
 
-    <!-- Video Overlay for better text readability -->
+    <!-- Video Overlay -->
     <div class="video-overlay"></div>
 
-    <!-- Animated Phoenix Elements (keep as additional effects) -->
+    <!-- Animated Phoenix Elements -->
     <div class="animated-bg-phoenix">
         <div class="flying-phoenix"></div>
         <div class="flying-phoenix"></div>
         <div class="flying-phoenix"></div>
     </div>
 
-    <!-- Connect Wallet button in top right -->
+    <!-- Connect Wallet Button -->
     <button id="connect-wallet" class="connect-wallet-btn">Connect Wallet</button>
     <div id="wallet-address" class="wallet-address-display" style="display:none;"></div>
 
@@ -870,18 +1273,20 @@
                 <a href="#" class="btn btn-primary btn-lg">
                     Buy $SENTINEL Now! <i class="fas fa-coins ms-2"></i>
                 </a>
-                
-                <!-- Social icons moved here below Buy button -->
+
+                <!-- Social icons -->
                 <div class="mt-4">
                     <h3>Join Our Phoenix Warriors!</h3>
                     <p class="lead mb-4">
                         Connect with us on our social channels and become part of the rising $SENTINEL community.
                     </p>
                     <div class="social-icons">
-                        <a href="https://t.me/sentinelcoinxyz" target="_blank" rel="noopener" title="Join us on Telegram">
+                        <a href="https://t.me/sentinelcoinxyz" target="_blank" rel="noopener"
+                            title="Join us on Telegram">
                             <i class="fab fa-telegram-plane"></i>
                         </a>
-                        <a href="https://x.com/sentinelcoinxyz?s=21" target="_blank" rel="noopener" title="Follow us on X">
+                        <a href="https://x.com/sentinelcoinxyz?s=21" target="_blank" rel="noopener"
+                            title="Follow us on X">
                             <i class="fab fa-twitter"></i>
                         </a>
                         <a href="#" title="Coming Soon">
@@ -911,36 +1316,25 @@
         // Wallet Connection Logic
         let currentAccount = null;
 
-        // Check if wallet is already connected on page load
         window.addEventListener('load', async () => {
             await checkWalletConnection();
         });
 
-        // Main wallet connect function
         async function connectWallet() {
             try {
-                // Check if MetaMask is installed
                 if (typeof window.ethereum !== 'undefined') {
                     await connectMetaMask();
                 }
-                // Check if Phantom (Solana) is installed
                 else if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
                     await connectPhantom();
                 }
-                // Check if Coinbase Wallet is installed
                 else if (typeof window.coinbaseWalletExtension !== 'undefined') {
                     await connectCoinbase();
                 }
-                // Check if Trust Wallet is installed
                 else if (typeof window.trustWallet !== 'undefined') {
                     await connectTrustWallet();
                 }
-                // Check if WalletConnect is available
-                else if (typeof window.WalletConnect !== 'undefined') {
-                    await connectWalletConnect();
-                }
                 else {
-                    // Show modal with wallet options
                     showWalletOptions();
                 }
             } catch (error) {
@@ -949,18 +1343,16 @@
             }
         }
 
-        // MetaMask connection
         async function connectMetaMask() {
             try {
                 const accounts = await window.ethereum.request({
                     method: 'eth_requestAccounts'
                 });
-                
+
                 if (accounts.length > 0) {
                     currentAccount = accounts[0];
                     updateWalletDisplay('MetaMask', currentAccount);
-                    
-                    // Listen for account changes
+
                     window.ethereum.on('accountsChanged', (accounts) => {
                         if (accounts.length > 0) {
                             currentAccount = accounts[0];
@@ -975,14 +1367,12 @@
             }
         }
 
-        // Phantom Wallet connection (Solana)
         async function connectPhantom() {
             try {
                 const response = await window.solana.connect();
                 currentAccount = response.publicKey.toString();
                 updateWalletDisplay('Phantom', currentAccount);
-                
-                // Listen for disconnect
+
                 window.solana.on('disconnect', () => {
                     disconnectWallet();
                 });
@@ -991,13 +1381,12 @@
             }
         }
 
-        // Coinbase Wallet connection
         async function connectCoinbase() {
             try {
                 const accounts = await window.coinbaseWalletExtension.request({
                     method: 'eth_requestAccounts'
                 });
-                
+
                 if (accounts.length > 0) {
                     currentAccount = accounts[0];
                     updateWalletDisplay('Coinbase', currentAccount);
@@ -1007,13 +1396,12 @@
             }
         }
 
-        // Trust Wallet connection
         async function connectTrustWallet() {
             try {
                 const accounts = await window.trustWallet.request({
                     method: 'eth_requestAccounts'
                 });
-                
+
                 if (accounts.length > 0) {
                     currentAccount = accounts[0];
                     updateWalletDisplay('Trust Wallet', currentAccount);
@@ -1023,14 +1411,13 @@
             }
         }
 
-        // Check if wallet is already connected
         async function checkWalletConnection() {
             try {
                 if (typeof window.ethereum !== 'undefined') {
                     const accounts = await window.ethereum.request({
                         method: 'eth_accounts'
                     });
-                    
+
                     if (accounts.length > 0) {
                         currentAccount = accounts[0];
                         updateWalletDisplay('MetaMask', currentAccount);
@@ -1041,54 +1428,43 @@
             }
         }
 
-        // Update wallet display
         function updateWalletDisplay(walletName, address) {
             const connectBtn = document.getElementById('connect-wallet');
             const walletDisplay = document.getElementById('wallet-address');
-            
-            // Shorten address for display
+
             const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
-            
-            // Update button text
+
             connectBtn.textContent = 'Disconnect';
             connectBtn.onclick = disconnectWallet;
-            
-            // Show wallet address
+
             walletDisplay.textContent = `${walletName}: ${shortAddress}`;
             walletDisplay.style.display = 'block';
-            
-            // Store connection info
+
             localStorage.setItem('walletConnected', 'true');
             localStorage.setItem('walletName', walletName);
             localStorage.setItem('walletAddress', address);
         }
 
-        // Disconnect wallet
         function disconnectWallet() {
             currentAccount = null;
-            
+
             const connectBtn = document.getElementById('connect-wallet');
             const walletDisplay = document.getElementById('wallet-address');
-            
-            // Reset button
+
             connectBtn.textContent = 'Connect Wallet';
             connectBtn.onclick = connectWallet;
-            
-            // Hide wallet display
+
             walletDisplay.style.display = 'none';
-            
-            // Clear storage
+
             localStorage.removeItem('walletConnected');
             localStorage.removeItem('walletName');
             localStorage.removeItem('walletAddress');
-            
-            // Disconnect from specific wallets
+
             if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
                 window.solana.disconnect();
             }
         }
 
-        // Show wallet options modal
         function showWalletOptions() {
             const modalHtml = `
                 <div class="modal fade" id="walletModal" tabindex="-1" aria-hidden="true">
@@ -1121,18 +1497,15 @@
                     </div>
                 </div>
             `;
-            
-            // Add modal to body if it doesn't exist
+
             if (!document.getElementById('walletModal')) {
                 document.body.insertAdjacentHTML('beforeend', modalHtml);
             }
-            
-            // Show modal
+
             const modal = new bootstrap.Modal(document.getElementById('walletModal'));
             modal.show();
         }
 
-        // Install wallet functions
         function installMetaMask() {
             window.open('https://metamask.io/download/', '_blank');
         }
@@ -1149,7 +1522,6 @@
             window.open('https://trustwallet.com/', '_blank');
         }
 
-        // Show error message
         function showError(message) {
             const errorHtml = `
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: rgba(220, 53, 69, 0.9); border: 1px solid #dc3545;">
@@ -1157,10 +1529,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             `;
-            
+
             document.body.insertAdjacentHTML('beforeend', errorHtml);
-            
-            // Auto remove after 5 seconds
+
             setTimeout(() => {
                 const alert = document.querySelector('.alert');
                 if (alert) {
@@ -1169,15 +1540,13 @@
             }, 5000);
         }
 
-        // Add event listener to connect button
         document.getElementById('connect-wallet').addEventListener('click', connectWallet);
 
-        // Check for stored wallet connection on page load
         window.addEventListener('load', () => {
             const isConnected = localStorage.getItem('walletConnected');
             const walletName = localStorage.getItem('walletName');
             const walletAddress = localStorage.getItem('walletAddress');
-            
+
             if (isConnected && walletName && walletAddress) {
                 updateWalletDisplay(walletName, walletAddress);
             }
